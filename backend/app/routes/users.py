@@ -10,13 +10,13 @@ router = APIRouter()
 @router.post("/register")
 def register(user: UserCreate, db: Session = Depends(get_db)):
 
+    
     new_user = User(
-        name=user.name,
-        email=user.email,
-        password=user.password,
-        role=user.role
-    )
-
+    name=user.name,
+    email=user.email,
+    password=user.password,
+    role="consumer"
+)
     db.add(new_user)
     db.commit()
 
