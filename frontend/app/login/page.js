@@ -11,6 +11,8 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
+      console.log("Sending Login Request...");
+
       const response = await fetch(
         "https://canteen-meal-booking.onrender.com/login",
         {
@@ -25,24 +27,20 @@ export default function Login() {
         }
       );
 
+      const data = await response.text();
+
       console.log("Status:", response.status);
+      console.log("Response:", data);
 
-      const text = await response.text();
-
-      console.log("Backend Response:", text);
-
-      if (
-        response.ok &&
-        text.toLowerCase().includes("login successful")
-      ) {
+      if (response.ok) {
         alert("Login Successful");
         router.push("/dashboard");
       } else {
-        alert(text);
+        alert(data || "Invalid Username or Password");
       }
     } catch (error) {
       console.error("Login Error:", error);
-      alert("Server Error");
+      alert("Unable to connect to server");
     }
   };
 
