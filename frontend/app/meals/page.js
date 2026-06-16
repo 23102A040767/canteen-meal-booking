@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import { useEffect, useState } from "react";
 
@@ -10,9 +10,20 @@ export default function Meals() {
   }, []);
 
   const fetchMeals = async () => {
-    const response = await fetch("http://127.0.0.1:8000/meals");
-    const data = await response.json();
-    setMeals(data);
+    try {
+      const response = await fetch(
+        "https://canteen-meal-booking.onrender.com/meals"
+      );
+
+      const data = await response.json();
+
+      console.log("Meals Data:", data);
+
+      setMeals(data);
+    } catch (error) {
+      console.error("Error fetching meals:", error);
+      alert("Failed to load meals");
+    }
   };
 
   return (
