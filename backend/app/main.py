@@ -11,10 +11,14 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-# CORS
+# ---------------- CORS ----------------
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://canteen-meal-booking-frontend.onrender.com",
+        "http://localhost:3000"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -50,15 +54,10 @@ def register(user: User, db: Session = Depends(get_db)):
 @app.post("/login")
 def login(user: User, db: Session = Depends(get_db)):
 
-    print("Username received:", user.username)
-    print("Password received:", user.password)
-
     db_user = db.query(UserModel).filter(
         UserModel.username == user.username,
         UserModel.password == user.password
     ).first()
-
-    print("DB User:", db_user)
 
     if db_user:
         return {

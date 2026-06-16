@@ -6,7 +6,7 @@ export default function Orders() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/orders")
+     fetch("https://canteen-meal-booking.onrender.com/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);

@@ -15,17 +15,20 @@ export default function AddMeal() {
         quantity: Number(quantity),
       });
 
-      const response = await fetch("http://127.0.0.1:8000/add-meal", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          price: Number(price),
-          quantity: Number(quantity),
-        }),
-      });
+      const response = await fetch(
+        "https://canteen-meal-booking.onrender.com/add-meal",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            price: Number(price),
+            quantity: Number(quantity),
+          }),
+        }
+      );
 
       console.log("Response Status:", response.status);
 
@@ -33,11 +36,14 @@ export default function AddMeal() {
 
       console.log("Response Data:", data);
 
-      alert(data.message);
-
-      setName("");
-      setPrice("");
-      setQuantity("");
+      if (response.ok) {
+        alert(data.message || "Meal Added Successfully");
+        setName("");
+        setPrice("");
+        setQuantity("");
+      } else {
+        alert(data.message || "Failed to add meal");
+      }
     } catch (error) {
       console.error("Error:", error);
       alert("Failed to connect to backend.");
