@@ -1,4 +1,4 @@
- "use client";
+  "use client";
 
 import { useState } from "react";
 
@@ -9,7 +9,7 @@ export default function Order() {
 
   const placeOrder = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/order", {
+      const response = await fetch("https://canteen-meal-booking.onrender.com/order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,4 +72,4 @@ export default function Order() {
       </button>
     </div>
   );
-}
+} 
