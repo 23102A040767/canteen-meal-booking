@@ -2,57 +2,59 @@
 
 import { useEffect, useState } from "react";
 
-export default function Meals() {
+export default function MealsPage() {
   const [meals, setMeals] = useState([]);
 
   useEffect(() => {
-    fetchMeals();
+    fetch("https://canteen-meal-booking.onrender.com/meals")
+      .then((res) => res.json())
+      .then((data) => setMeals(data))
+      .catch((err) => console.error("Error fetching meals:", err));
   }, []);
 
-  const fetchMeals = async () => {
-    try {
-      const response = await fetch(
-        "https://canteen-meal-booking.onrender.com/meals"
-      );
-
-      const data = await response.json();
-
-      console.log("Meals Data:", data);
-
-      setMeals(data);
-    } catch (error) {
-      console.error("Error fetching meals:", error);
-      alert("Failed to load meals");
-    }
-  };
-
   return (
-    <div className="min-h-screen p-10">
-      <h1 className="text-4xl font-bold mb-5">
-        Available Meals
-      </h1>
+    <div style={styles.page}>
+      <div style={styles.container}>
+        <h1 style={styles.title}>Available Meals</h1>
 
-      <table className="border border-white w-full">
-        <thead>
-          <tr>
-            <th className="border p-2">ID</th>
-            <th className="border p-2">Name</th>
-            <th className="border p-2">Price</th>
-            <th className="border p-2">Quantity</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {meals.map((meal) => (
-            <tr key={meal.id}>
-              <td className="border p-2">{meal.id}</td>
-              <td className="border p-2">{meal.name}</td>
-              <td className="border p-2">{meal.price}</td>
-              <td className="border p-2">{meal.quantity}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+        {meals.length === 0 ? (
+          <p style={{ color: "white" }}>No meals found</p>
+        ) : (
+          meals.map((meal) => (
+            <div key={meal.id} style={styles.card}>
+              <p><b>ID:</b> {meal.id}</p>
+              <p><b>Name:</b> {meal.name}</p>
+              <p><b>Price:</b> ₹{meal.price}</p>
+              <p><b>Quantity:</b> {meal.quantity}</p>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 }
+
+const styles = {
+  page: {
+    minHeight: "100vh",
+    backgroundColor: "#0f172a",
+    padding: "30px",
+  },
+  container: {
+    maxWidth: "700px",
+    margin: "0 auto",
+  },
+  title: {
+    color: "white",
+    textAlign: "center",
+    marginBottom: "20px",
+  },
+  card: {
+    backgroundColor: "#1e293b",
+    color: "white",
+    padding: "20px",
+    borderRadius: "10px",
+    marginBottom: "15px",
+    boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+  },
+};
