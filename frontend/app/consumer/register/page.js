@@ -1,51 +1,51 @@
- "use client";
+"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
-export default function ConsumerLogin() {
+export default function ConsumerRegister() {
   const router = useRouter();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [form, setForm] = useState({
+    username: "",
+    password: "",
+    role: "CONSUMER",
+  });
+
   const [message, setMessage] = useState("");
 
-  const handleLogin = async (e) => {
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const register = async (e) => {
     e.preventDefault();
 
     try {
       const response = await fetch(
-        "https://canteen-meal-booking-backend.onrender.com/auth/login",
+        "https://canteen-meal-booking-backend.onrender.com/auth/register",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            username,
-            password,
-          }),
+          body: JSON.stringify(form),
         }
       );
 
       const data = await response.text();
 
-      console.log("Response Status:", response.status);
-      console.log("Response Data:", data);
-
       if (response.ok) {
-        if (data.includes("CONSUMER")) {
-          localStorage.setItem("username", username);
-          router.push("/consumer/dashboard");
-        } else {
-          setMessage("You are not a Consumer.");
-        }
+        alert("Registration Successful");
+        router.push("/consumer/login");
       } else {
         setMessage(data);
       }
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.log(err);
       setMessage("Unable to connect to server.");
     }
   };
@@ -53,28 +53,30 @@ export default function ConsumerLogin() {
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
       <form
-        onSubmit={handleLogin}
-        className="bg-white p-8 rounded-lg shadow-lg w-96"
+        onSubmit={register}
+        className="bg-white p-8 rounded-xl shadow-lg w-96"
       >
         <h1 className="text-3xl font-bold text-center mb-6">
-          Consumer Login
+          Consumer Register
         </h1>
 
         <input
           type="text"
+          name="username"
           placeholder="Username"
+          value={form.username}
+          onChange={handleChange}
           className="w-full border p-3 rounded mb-4"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
           required
         />
 
         <input
           type="password"
+          name="password"
           placeholder="Password"
+          value={form.password}
+          onChange={handleChange}
           className="w-full border p-3 rounded mb-4"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           required
         />
 
@@ -82,24 +84,24 @@ export default function ConsumerLogin() {
           type="submit"
           className="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700"
         >
-          Login
+          Register
         </button>
+
+        <p className="text-center mt-4">
+          Already have an account?{" "}
+          <a
+            href="/consumer/login"
+            className="text-blue-600 font-semibold"
+          >
+            Login
+          </a>
+        </p>
 
         {message && (
           <p className="text-red-500 text-center mt-4">
             {message}
           </p>
         )}
-
-        <p className="text-center mt-5 text-gray-600">
-          Don't have an account?{" "}
-          <Link
-            href="/consumer/register"
-            className="text-blue-600 font-semibold hover:underline"
-          >
-            Register
-          </Link>
-        </p>
       </form>
     </div>
   );
