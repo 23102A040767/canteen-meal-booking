@@ -13,7 +13,7 @@ export default function OrderPage() {
     const username = localStorage.getItem("username");
 
     try {
-      const response = await fetch("http://localhost:8080/orders/place", {
+      const response = await  fetch("https://canteen-meal-booking-backend.onrender.com/orders/place", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

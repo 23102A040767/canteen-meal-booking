@@ -13,7 +13,7 @@ export default function MyOrdersPage() {
       return;
     }
 
-    fetch(`http://localhost:8080/orders/my/${username}`)
+    fetch(`https://canteen-meal-booking-backend.onrender.com/orders/user/${username}`)
       .then((res) => res.json())
       .then((data) => setOrders(data))
       .catch((err) => console.log(err));

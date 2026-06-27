@@ -14,8 +14,7 @@ export default function ProducerLogin() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/auth/login", {
-        method: "POST",
+      const response = await  fetch("https://canteen-meal-booking-backend.onrender.com/auth/login", {
         headers: {
           "Content-Type": "application/json",
         },

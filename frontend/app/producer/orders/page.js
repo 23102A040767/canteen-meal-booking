@@ -6,7 +6,7 @@ export default function OrdersPage() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/orders/all")
+     fetch("https://canteen-meal-booking-backend.onrender.com/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data))
       .catch((err) => console.log(err));

@@ -22,7 +22,7 @@ export default function AddMealPage() {
 
     try {
 
-      const response = await fetch("http://localhost:8080/meals/add", {
+      const response = await fetch("https://canteen-meal-booking-backend.onrender.com/meals/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

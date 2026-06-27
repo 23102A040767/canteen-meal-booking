@@ -14,7 +14,7 @@ export default function ManageMealsPage() {
   });
 
   const loadMeals = () => {
-    fetch("http://localhost:8080/meals/all")
+     fetch("https://canteen-meal-booking-backend.onrender.com/meals/all")
       .then((res) => res.json())
       .then((data) => setMeals(data))
       .catch((err) => console.log(err));
@@ -27,7 +27,7 @@ export default function ManageMealsPage() {
   const deleteMeal = async (id) => {
     if (!confirm("Delete this meal?")) return;
 
-    await fetch(`http://localhost:8080/meals/${id}`, {
+    await  fetch(`https://canteen-meal-booking-backend.onrender.com/meals/${id}`, {
       method: "DELETE",
     });
 
@@ -47,9 +47,7 @@ export default function ManageMealsPage() {
 
   const updateMeal = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:8080/meals/${editingMeal.id}`,
-        {
+      const response = await  fetch(`https://canteen-meal-booking-backend.onrender.com/meals/${editingMeal.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
