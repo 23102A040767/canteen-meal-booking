@@ -1,5 +1,4 @@
-
-package com.canteen.backend.controller;
+ package com.canteen.backend.controller;
 
 import com.canteen.backend.dto.MealDTO;
 import com.canteen.backend.entity.Meal;
@@ -37,6 +36,14 @@ public class MealController {
         return mealRepository.findAll();
     }
 
+    // Get Meal By ID
+    @GetMapping("/{id}")
+    public Meal getMealById(@PathVariable Long id) {
+
+        return mealRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Meal not found"));
+    }
+
     // Update Meal
     @PutMapping("/{id}")
     public String updateMeal(@PathVariable Long id,
@@ -68,7 +75,5 @@ public class MealController {
         mealRepository.deleteById(id);
 
         return "Meal deleted successfully!";
-    
+    }
 }
-}
-
