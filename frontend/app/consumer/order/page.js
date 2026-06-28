@@ -58,7 +58,7 @@ export default function OrderPage() {
         localStorage.removeItem("mealId");
 
         setTimeout(() => {
-          router.push("/consumer/myorders");
+          router.push("/consumer/my-orders");
         }, 1500);
 
       } else {
