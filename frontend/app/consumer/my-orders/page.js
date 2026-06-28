@@ -13,7 +13,9 @@ export default function MyOrdersPage() {
       return;
     }
 
-    fetch(`https://canteen-meal-booking-backend.onrender.com/orders/user/${username}`)
+    fetch(
+      `https://canteen-meal-booking-backend.onrender.com/orders/myorders/${username}`
+    )
       .then((res) => res.json())
       .then((data) => setOrders(data))
       .catch((err) => console.log(err));
@@ -21,8 +23,7 @@ export default function MyOrdersPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-100 p-10">
-
-      <h1 className="text-6xl font-extrabold text-center text-blue-900 mb-14">
+      <h1 className="text-5xl font-extrabold text-center text-blue-900 mb-12">
         📦 My Orders
       </h1>
 
@@ -31,73 +32,65 @@ export default function MyOrdersPage() {
           No Orders Found
         </div>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {orders.map((order) => (
-
             <div
               key={order.id}
-              className="bg-white rounded-3xl shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden"
+              className="bg-white rounded-3xl shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
             >
-
-              {/* Top */}
-              <div className="bg-gradient-to-r from-blue-700 to-cyan-500 text-white p-6">
-
+              {/* Header */}
+              <div className="bg-gradient-to-r from-blue-700 to-cyan-500 text-white p-6 rounded-t-3xl">
                 <div className="flex justify-between items-center">
-
-                  <h2 className="text-3xl font-bold">
+                  <h2 className="text-2xl font-bold">
                     Order #{order.id}
                   </h2>
 
-                  <span className="bg-green-500 px-4 py-2 rounded-full font-semibold">
+                  <span className="bg-green-500 px-3 py-1 rounded-full font-semibold">
                     Confirmed
                   </span>
-
                 </div>
-
               </div>
 
               {/* Body */}
-              <div className="p-6 space-y-5">
+              <div className="p-6 space-y-4">
 
-                <div className="flex justify-between text-lg">
-                  <span>🍽 Meal ID</span>
-                  <span className="font-bold">{order.mealId}</span>
+                <div className="flex justify-between">
+                  <span className="font-semibold">🍽 Meal</span>
+                  <span className="font-bold text-blue-700">
+                    {order.meal?.name}
+                  </span>
                 </div>
 
-                <div className="flex justify-between text-lg">
-                  <span>📦 Quantity</span>
+                <div className="flex justify-between">
+                  <span className="font-semibold">💰 Price</span>
+                  <span className="font-bold text-green-600">
+                    ₹{order.meal?.price}
+                  </span>
+                </div>
 
-                  <span className="bg-blue-100 text-blue-700 px-4 py-1 rounded-full font-bold">
+                <div className="flex justify-between">
+                  <span className="font-semibold">📦 Quantity</span>
+                  <span className="font-bold">
                     {order.quantity}
                   </span>
                 </div>
 
-                <div className="flex justify-between text-lg">
-                  <span>👤 Username</span>
-
-                  <span className="font-semibold text-blue-700">
+                <div className="flex justify-between">
+                  <span className="font-semibold">👤 Username</span>
+                  <span className="font-bold text-blue-700">
                     {order.username}
                   </span>
                 </div>
 
-                <div className="pt-4">
-
-                  <button className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl text-lg font-bold transition">
-                    ✅ Order Confirmed
-                  </button>
-
-                </div>
+                <button className="w-full mt-4 bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-bold">
+                  ✅ Order Confirmed
+                </button>
 
               </div>
-
             </div>
-
           ))}
-
         </div>
       )}
-
     </div>
   );
 }
