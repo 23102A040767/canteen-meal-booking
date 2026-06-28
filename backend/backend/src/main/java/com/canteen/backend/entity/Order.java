@@ -11,14 +11,28 @@ public class Order {
     private Long id;
 
     private String username;
-    private Long mealId;
+
     private Integer quantity;
+
+    @ManyToOne
+    @JoinColumn(name = "meal_id")
+    private Meal meal;
 
     public Order() {
     }
 
+    public Order(String username, Integer quantity, Meal meal) {
+        this.username = username;
+        this.quantity = quantity;
+        this.meal = meal;
+    }
+
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -29,19 +43,19 @@ public class Order {
         this.username = username;
     }
 
-    public Long getMealId() {
-        return mealId;
-    }
-
-    public void setMealId(Long mealId) {
-        this.mealId = mealId;
-    }
-
     public Integer getQuantity() {
         return quantity;
     }
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Meal getMeal() {
+        return meal;
+    }
+
+    public void setMeal(Meal meal) {
+        this.meal = meal;
     }
 }
