@@ -34,38 +34,39 @@ export default function Home() {
           align-items: center;
           padding: 20px;
 
-          background: url("/food.png") center center/cover no-repeat;
+          background: url("/food.png") no-repeat center center;
+          background-size: cover;
         }
 
         .content {
           width: 100%;
-          max-width: 700px;
+          max-width: 560px;
           text-align: center;
 
-          background: rgba(255, 255, 255, 0.85);
-          backdrop-filter: blur(8px);
+          background: rgba(255, 255, 255, 0.88);
+          backdrop-filter: blur(6px);
 
-          border-radius: 25px;
-          padding: 60px 40px;
+          border-radius: 24px;
+          padding: 45px 30px;
 
-          box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
         }
 
         h1 {
           font-size: 72px;
           font-weight: 800;
-          color: #ff6600;
-          margin-bottom: 15px;
+          color: #ff6a00;
+          margin-bottom: 8px;
           letter-spacing: 1px;
-          text-shadow: 2px 2px 8px rgba(0,0,0,.15);
+          text-shadow: 2px 2px 6px rgba(0,0,0,.12);
         }
 
         h2 {
-          font-size: 28px;
-          color: #444;
+          font-size: 22px;
+          color: #555;
           font-weight: 500;
-          margin-bottom: 45px;
-          letter-spacing: 3px;
+          margin-bottom: 35px;
+          letter-spacing: 1px;
         }
 
         button {
@@ -73,46 +74,58 @@ export default function Home() {
           color: white;
           border: none;
           border-radius: 50px;
-          padding: 18px 55px;
+          padding: 16px 48px;
           font-size: 22px;
-          font-weight: bold;
+          font-weight: 700;
           cursor: pointer;
-          transition: all 0.3s ease;
-          box-shadow: 0 10px 25px rgba(255,102,0,.35);
+          transition: 0.3s;
+          box-shadow: 0 10px 25px rgba(255, 102, 0, 0.35);
         }
 
         button:hover {
-          transform: translateY(-3px) scale(1.05);
-          box-shadow: 0 15px 35px rgba(255,102,0,.45);
+          transform: translateY(-3px) scale(1.04);
+          box-shadow: 0 15px 35px rgba(255, 102, 0, 0.45);
         }
 
+        /* Tablet */
+
         @media (max-width: 992px) {
+          .content {
+            max-width: 500px;
+          }
+
           h1 {
             font-size: 58px;
           }
 
           h2 {
-            font-size: 24px;
+            font-size: 20px;
           }
         }
 
+        /* Mobile */
+
         @media (max-width: 768px) {
+
           .hero {
             padding: 15px;
+            background-position: center;
           }
 
           .content {
-            width: 95%;
-            padding: 40px 20px;
+            width: 92%;
+            max-width: 380px;
+            padding: 35px 20px;
+            border-radius: 20px;
           }
 
           h1 {
-            font-size: 42px;
+            font-size: 46px;
           }
 
           h2 {
-            font-size: 20px;
-            margin-bottom: 30px;
+            font-size: 18px;
+            margin-bottom: 28px;
           }
 
           button {
@@ -123,14 +136,24 @@ export default function Home() {
         }
 
         @media (max-width: 400px) {
+
+          .content {
+            width: 95%;
+          }
+
           h1 {
-            font-size: 34px;
+            font-size: 38px;
           }
 
           h2 {
-            font-size: 18px;
+            font-size: 17px;
+          }
+
+          button {
+            font-size: 17px;
           }
         }
+
       `}</style>
     </>
   );
