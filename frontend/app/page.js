@@ -9,16 +9,12 @@ export default function Home() {
     <>
       <main className="hero">
         <div className="content">
-          <h1>SKIP THE QUEUE</h1>
+          <h1>Canteen Meal Booking</h1>
 
-          <p>
-            Order delicious meals before reaching the canteen.
-            <br />
-            Save your time with quick and hassle-free dining.
-          </p>
+          <h2>Skip the Queue</h2>
 
           <button onClick={() => router.push("/select-role")}>
-            Get Started →
+            Book Now 🍽️
           </button>
         </div>
       </main>
@@ -38,48 +34,44 @@ export default function Home() {
           justify-content: center;
           align-items: center;
 
-          background-image: url("/food.png");
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
-
+          background: url("/food.png") center center/cover no-repeat;
           padding: 20px;
         }
 
         .content {
           width: 100%;
-          max-width: 650px;
-
+          max-width: 700px;
           text-align: center;
 
-          background: rgba(255,255,255,0.18);
-          backdrop-filter: blur(10px);
+          background: rgba(255, 255, 255, 0.82);
+          backdrop-filter: blur(8px);
 
+          padding: 55px 40px;
           border-radius: 25px;
 
-          padding: 50px 40px;
-
-          box-shadow: 0 10px 30px rgba(0,0,0,.2);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
         }
 
         h1 {
-          font-size: 64px;
-          color: #ff5a00;
-          font-weight: 900;
-          margin-bottom: 20px;
-          text-shadow: 2px 2px 8px rgba(0,0,0,.15);
+          font-size: 60px;
+          color: #ff6600;
+          font-weight: 800;
+          margin-bottom: 15px;
+          line-height: 1.2;
+          text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
         }
 
-        p {
-          font-size: 22px;
-          color: #333;
-          line-height: 1.8;
-          margin-bottom: 35px;
+        h2 {
+          font-size: 28px;
+          color: #444;
           font-weight: 500;
+          font-style: italic;
+          letter-spacing: 2px;
+          margin-bottom: 40px;
         }
 
         button {
-          background: linear-gradient(90deg,#ff7a00,#ff4d00);
+          background: linear-gradient(90deg, #ff7a00, #ff4d00);
           color: white;
           border: none;
           padding: 18px 45px;
@@ -87,75 +79,65 @@ export default function Home() {
           font-weight: bold;
           border-radius: 50px;
           cursor: pointer;
-          transition: .3s;
-          box-shadow: 0 10px 25px rgba(255,102,0,.35);
+          transition: 0.3s;
+          box-shadow: 0 10px 25px rgba(255, 102, 0, 0.35);
         }
 
         button:hover {
-          transform: scale(1.05);
+          transform: translateY(-3px) scale(1.03);
         }
 
         /* Tablet */
 
         @media (max-width: 992px) {
-
           h1 {
-            font-size: 52px;
+            font-size: 48px;
           }
 
-          p {
-            font-size: 20px;
+          h2 {
+            font-size: 24px;
           }
-
         }
 
         /* Mobile */
 
         @media (max-width: 768px) {
-
-          .hero{
-            background-position:center;
-            padding:15px;
+          .hero {
+            padding: 15px;
+            background-position: center;
           }
 
-          .content{
-            width:95%;
-            padding:30px 20px;
-            border-radius:20px;
+          .content {
+            width: 95%;
+            padding: 35px 20px;
+            border-radius: 20px;
           }
 
-          h1{
-            font-size:36px;
-            line-height:1.2;
+          h1 {
+            font-size: 34px;
           }
 
-          p{
-            font-size:16px;
-            line-height:1.6;
+          h2 {
+            font-size: 20px;
+            margin-bottom: 30px;
           }
 
-          button{
-            width:100%;
-            padding:15px;
-            font-size:18px;
+          button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
           }
-
         }
 
-        /* Small Mobile */
-
-        @media (max-width:400px){
-
-          h1{
-            font-size:30px;
+        @media (max-width: 400px) {
+          h1 {
+            font-size: 30px;
           }
 
-          p{
-            font-size:15px;
+          h2 {
+            font-size: 18px;
           }
-
         }
-
       `}</style>
     </>
   );
