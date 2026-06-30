@@ -22,6 +22,7 @@ export default function SelectRole() {
           color: "#ff6600",
           fontSize: "48px",
           marginBottom: "15px",
+          fontWeight: "bold",
         }}
       >
         Select Your Role
@@ -40,7 +41,7 @@ export default function SelectRole() {
       <button
         onClick={() => router.push("/student")}
         style={{
-          width: "250px",
+          width: "260px",
           padding: "18px",
           fontSize: "22px",
           background: "#ff6600",
@@ -50,6 +51,7 @@ export default function SelectRole() {
           marginBottom: "20px",
           cursor: "pointer",
           fontWeight: "bold",
+          transition: "0.3s",
         }}
       >
         🎓 Student
@@ -58,7 +60,7 @@ export default function SelectRole() {
       <button
         onClick={() => router.push("/admin")}
         style={{
-          width: "250px",
+          width: "260px",
           padding: "18px",
           fontSize: "22px",
           background: "#0b1d51",
@@ -67,6 +69,7 @@ export default function SelectRole() {
           borderRadius: "12px",
           cursor: "pointer",
           fontWeight: "bold",
+          transition: "0.3s",
         }}
       >
         👨‍💼 Admin
