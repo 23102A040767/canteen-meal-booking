@@ -21,14 +21,24 @@ export default function SelectRole() {
         style={{
           color: "#ff6600",
           fontSize: "48px",
-          marginBottom: "40px",
+          marginBottom: "15px",
         }}
       >
         Select Your Role
       </h1>
 
+      <p
+        style={{
+          color: "#666",
+          fontSize: "18px",
+          marginBottom: "40px",
+        }}
+      >
+        Choose how you want to continue
+      </p>
+
       <button
-        onClick={() => router.push("/consumer")}
+        onClick={() => router.push("/student")}
         style={{
           width: "250px",
           padding: "18px",
@@ -39,13 +49,14 @@ export default function SelectRole() {
           borderRadius: "12px",
           marginBottom: "20px",
           cursor: "pointer",
+          fontWeight: "bold",
         }}
       >
-        Consumer
+        🎓 Student
       </button>
 
       <button
-        onClick={() => router.push("/producer")}
+        onClick={() => router.push("/admin")}
         style={{
           width: "250px",
           padding: "18px",
@@ -55,9 +66,10 @@ export default function SelectRole() {
           border: "none",
           borderRadius: "12px",
           cursor: "pointer",
+          fontWeight: "bold",
         }}
       >
-        Producer
+        👨‍💼 Admin
       </button>
     </div>
   );
